@@ -1,0 +1,57 @@
+[
+    {
+        "model": "books.book",
+        "pk": 1,
+        "fields": {
+            "title": "War and Peace",
+            "author": "Leo Tolstoy",
+            "description": "A historical novel that chronicles the French invasion of Russia.",
+            "year": 1869,
+            "price": "19.99"
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 2,
+        "fields": {
+            "title": "The Catcher in the Rye",
+            "author": "J.D. Salinger",
+            "description": "A story about teenage rebellion and angst.",
+            "year": 1951,
+            "price": "10.99"
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 3,
+        "fields": {
+            "title": "The Hobbit",
+            "author": "J.R.R. Tolkien",
+            "description": "A fantasy novel about the adventures of Bilbo Baggins.",
+            "year": 1937,
+            "price": "15.99"
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 4,
+        "fields": {
+            "title": "Crime and Punishment",
+            "author": "Fyodor Dostoevsky",
+            "description": "A psychological novel exploring the moral dilemmas of a young man.",
+            "year": 1866,
+            "price": "14.99"
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 5,
+        "fields": {
+            "title": "The Brothers Karamazov",
+            "author": "Fyodor Dostoevsky",
+            "description": "A philosophical novel about faith, doubt, and reason.",
+            "year": 1880,
+            "price": "18.99"
+        }
+    }
+]

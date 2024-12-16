@@ -1,6 +1,6 @@
 from django.urls import path
 
-from elements import views
+from books import views
 
 urlpatterns = [
     path("list/", views.list),
