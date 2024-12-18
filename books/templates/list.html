@@ -1,30 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "layout.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}My Django App{% endblock %}</title>
+{% block header %}Books List{% endblock %}
 
-</head>
-
-<body>
-    <header>
-        <h1>Books List</h1>
-    </header>
-
-    <main>
-        <!-- {% block content %} -->
-        <ul>
-            {% for book in books %}
-            <li>[{{ book.id }}] {{ book.title }} - {{ book.author }}</li>
-            {% endfor %}
-        </ul>
-        <!-- {% endblock %} -->
-    </main>
-    <footer>
-        <p>&copy; 2024 Education Django App for PD322</p>
-    </footer>
-</body>
-
-</html>
+{% block content %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-striped table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in books %}
+                    <tr>
+                        <th scope="row">{{ book.id }}</th>
+                        <td>{{ book.title }}</td>
+                        <td>{{ book.author }}</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a href="{% url 'detail' book.id %}" class="btn btn-info btn-sm" title="View Book">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                                <form action="{% url 'delete' book.id %}" method="post" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger btn-sm" title="Delete Book">
+                                        <i class="bi bi-trash3"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

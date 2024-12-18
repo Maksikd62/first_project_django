@@ -1,0 +1,15 @@
+body {
+    display: flex;
+    flex-direction: column;
+    /* viewport height */
+    min-height: 100vh;
+}
+
+body>.container {
+    flex-grow: 1;
+}
+
+footer {
+    padding: 10px;
+    color: white;
+}
