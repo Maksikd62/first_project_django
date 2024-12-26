@@ -7,12 +7,12 @@ from books.models import Book
 
 def list(request):
     books = Book.objects.all()
-    return render(request, "list.html", {"books": books})
+    return render(request, "list_book.html", {"books": books})
 
 def detail(request, id):
     try:
         book = Book.objects.get(id=id)
-        return render(request, "detail.html", {"book": book})
+        return render(request, "detail_book.html", {"book": book})
     except Book.DoesNotExist:
         return HttpResponse("Book not found", status=404)
     
@@ -35,7 +35,7 @@ def create(request):
             form.save()
             return redirect("/books")
 
-    return render(request, "create.html", {"form": form})
+    return render(request, "create_book.html", {"form": form})
 
 
 def edit(request, id):
@@ -54,4 +54,4 @@ def edit(request, id):
             form.save()
             return redirect("/books")
 
-    return render(request, "edit.html", {"form": form})
+    return render(request, "edit_book.html", {"form": form})

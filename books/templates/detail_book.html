@@ -1,4 +1,4 @@
-{% extends "list.html" %}
+{% extends "list_book.html" %}
 
 {% block header %}{% endblock %}
 
@@ -16,8 +16,8 @@
             <p><strong>Price:</strong> {{ book.price }}</p>
         </div>
         <div class="card-footer text-right">
-            <a href="{% url 'edit' book.id%}" class="btn btn-outline-primary">Edit</a>
-            <a href="{% url 'list' %}" class="btn btn-outline-secondary">Back</a>
+            <a href="{% url 'edit_book' book.id%}" class="btn btn-outline-primary">Edit</a>
+            <a href="{% url 'list_books' %}" class="btn btn-outline-secondary">Back</a>
         </div>
     </div>
 </div>

@@ -1,0 +1,48 @@
+{% extends "list_user.html" %}
+
+{% block header %}Create New User{% endblock %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label class="form-label" style="font-size: 1.2em;">First Name</label>
+        <input type="text" name="first_name" class="form-control" placeholder="Enter first name" value="{{ form.first_name.value }}">
+        {% if form.first_name.errors %}
+            <div class="text-danger">{{ form.first_name.errors}}</div>
+        {% endif %}
+    </div>
+    <div class="mb-3">
+        <label class="form-label" style="font-size: 1.2em;">Last Name</label>
+        <input type="text" name="last_name" class="form-control" placeholder="Enter last name" value="{{ form.last_name.value }}">
+        {% if form.last_name.errors %}
+            <div class="text-danger">{{ form.last_name.errors}}</div>
+        {% endif %}
+    </div>
+    <div class="mb-3">
+        <label class="form-label" style="font-size: 1.2em;">Username</label>
+        <input type="text" name="user_name" class="form-control" placeholder="Enter username" value="{{ form.user_name.value }}">
+        {% if form.user_name.errors %}
+            <div class="text-danger">{{ form.user_name.errors}}</div>
+        {% endif %}
+    </div>
+    <div class="mb-3">
+        <label class="form-label" style="font-size: 1.2em;">Email</label>
+        <input type="email" name="email" class="form-control" placeholder="Enter email" value="{{ form.email.value }}">
+        {% if form.email.errors %}
+            <div class="text-danger">{{ form.email.errors|join:", " }}</div>
+        {% endif %}
+    </div>
+    <div class="mb-3">
+        <label class="form-label" style="font-size: 1.2em;">Phone</label>
+        <input type="text" name="phone" class="form-control" placeholder="Enter phone number" value="{{ form.phone.value }}">
+        {% if form.phone.errors %}
+            <div class="text-danger">{{ form.phone.errors}}</div>
+        {% endif %}
+    </div>
+    <div>
+        <button type="submit" class="btn btn-outline-primary">Create</button>
+        <a href="{% url 'list_users' %}" class="btn btn-outline-secondary">Cancel</a>
+    </div>
+</form>
+{% endblock %}
