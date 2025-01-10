@@ -41,6 +41,13 @@
         {% endif %}
     </div>
     <div class="mb-3">
+        <label class="form-label">{{ form.role.label }}</label>
+        {{ form.role }}
+        {% if form.role.errors %}
+            <div class="text-danger">{{ form.role.errors }}</div>
+        {% endif %}
+    </div>
+    <div class="mb-3">
         <label class="form-label" style="font-size: 1.2em;">Avatar</label>
         <input type="file" name="avatar" class="form-control" placeholder="Insert avatar" value="{{ form.avatar.value }}">
         {% if form.avatar.errors %}

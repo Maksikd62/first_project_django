@@ -18,6 +18,7 @@
             <p><strong>User name:</strong> {{ user.user_name }}</p>
             <p><strong>Email:</strong> {{ user.email }}</p>
             <p><strong>Phone:</strong> {{ user.phone }}</p>
+            <p><strong>Role:</strong> {{ user.get_role_display }}</p>
         </div>
     </div>
     <div class="mt-3 text-start">

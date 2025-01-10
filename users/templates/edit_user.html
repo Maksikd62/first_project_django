@@ -41,6 +41,10 @@
         {% endif %}
     </div>
     <div class="mb-3">
+        <label class="form-label">{{form.role.label}}</label>
+        {{form.role}}
+    </div>
+    <div class="mb-3">
         <label class="form-label">Avatar</label>
         {% if form.avatar.value %}
             <img src="{{ form.avatar.value.url }}" alt="Avatar" class="img-fluid mb-3" style="max-width: 200px;">

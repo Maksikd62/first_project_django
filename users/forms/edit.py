@@ -5,6 +5,9 @@ class EditUser(forms.ModelForm):
     class Meta:
         model = User
         fields = "__all__"  # all Book model fields
+        widgets = {
+            'role': forms.Select(attrs={'class': 'form-select'}),
+        }
 
     def clean_first_name(self):
         first_name = self.cleaned_data.get("first_name")

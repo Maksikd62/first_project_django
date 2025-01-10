@@ -5,16 +5,15 @@ class CreateUser(forms.ModelForm):
     class Meta:
         model = User
         fields = "__all__"  # всі поля моделі User
+        widgets = {
+            'role': forms.Select(attrs={'class': 'form-select'}),
+        }
         
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Ініціалізуємо всі поля порожнім значенням
         for field_name, field in self.fields.items():
-            if field_name != 'avatar':  # Робимо виключення для поля avatar
-                field.required = True
-                field.initial = ""  # Поля будуть пустими за замовчуванням
-            else:
-                field.required = False
+            field.initial = ""  # Поля будуть пустими за замовчуванням
 
     def clean_first_name(self):
         first_name = self.cleaned_data.get("first_name")
