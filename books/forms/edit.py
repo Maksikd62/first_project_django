@@ -25,3 +25,21 @@ class EditBook(forms.ModelForm):
         if price <= 0:
             raise forms.ValidationError("Price must be a positive number.")
         return price
+    
+    def clean_language(self):
+        language = self.cleaned_data.get("language")
+        if not all(x.isalpha() or x.isspace() for x in language):
+            raise forms.ValidationError("Language must contain only letters.")
+        return language
+
+    def clean_genre(self):
+        genre = self.cleaned_data.get("genre")
+        if not all(x.isalpha() or x.isspace() for x in genre):
+            raise forms.ValidationError("Genre must contain only letters.")
+        return genre
+    
+    def clean_number_of_pages(self):
+        number_of_pages = self.cleaned_data.get("number_of_pages")
+        if number_of_pages <= 0:
+            raise forms.ValidationError("Number of pages must be a positive number.")
+        return number_of_pages

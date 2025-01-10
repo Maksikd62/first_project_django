@@ -1,4 +1,4 @@
-{% extends "list_book.html" %}
+{% extends "layout_book.html" %}
 
 {% block header %}{% endblock %}
 
@@ -14,6 +14,11 @@
             <p><strong>Description:</strong> {{ book.description }}</p>
             <p><strong>Year:</strong> {{ book.year }}</p>
             <p><strong>Price:</strong> {{ book.price }}</p>
+            <p><strong>Number of Pages:</strong> {{ book.number_of_pages|default:"-" }}</p>
+            <p><strong>Genre:</strong> {{ book.genre|default:"-" }}</p>
+            <p><strong>Language:</strong> {{ book.language|default:"-" }}</p>
+            <p><strong>Edition:</strong> {{ book.edition|default:"-" }}</p>
+            <p><strong>Cover:</strong> {% if book.cover %}<img src="{{ book.cover.url }}" alt="Cover Image" class="img-fluid">{% else %}-{% endif %}</p>
         </div>
         <div class="card-footer text-right">
             <a href="{% url 'edit_book' book.id%}" class="btn btn-outline-primary">Edit</a>

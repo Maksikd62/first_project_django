@@ -5,6 +5,9 @@ from users.forms.create import CreateUser
 from users.forms.edit import EditUser
 from users.models import User
 
+import os
+from django.conf import settings
+
 def list(request):
     users = User.objects.all()
     return render(request, "list_user.html", {"users": users})
@@ -19,6 +22,8 @@ def detail(request, id):
 def delete(request, id):
     try:
         user = User.objects.get(id=id)
+        if user.avatar:
+            os.remove(os.path.join(settings.MEDIA_ROOT, user.avatar.name))
         user.delete()
         return redirect("/users")
     except User.DoesNotExist:
@@ -29,7 +34,7 @@ def create(request):
     form = CreateUser()
 
     if request.method == "POST":
-        form = CreateUser(request.POST)
+        form = CreateUser(request.POST, request.FILES)
 
         if form.is_valid():
             form.save()
@@ -48,7 +53,7 @@ def edit(request, id):
     form = EditUser(instance=user)
 
     if request.method == "POST":
-        form = CreateUser(request.POST, instance=user)
+        form = CreateUser(request.POST, instance=user, files=request.FILES)
 
         if form.is_valid():
             form.save()

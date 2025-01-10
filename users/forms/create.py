@@ -9,9 +9,12 @@ class CreateUser(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Ініціалізуємо всі поля порожнім значенням
-        for field in self.fields.values():
-            field.required = True  # Робимо всі поля обов'язковими
-            field.initial = ""  # Поля будуть пустими за замовчуванням
+        for field_name, field in self.fields.items():
+            if field_name != 'avatar':  # Робимо виключення для поля avatar
+                field.required = True
+                field.initial = ""  # Поля будуть пустими за замовчуванням
+            else:
+                field.required = False
 
     def clean_first_name(self):
         first_name = self.cleaned_data.get("first_name")
