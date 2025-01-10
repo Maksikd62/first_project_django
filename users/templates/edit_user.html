@@ -42,7 +42,7 @@
     </div>
     <div class="mb-3">
         <label class="form-label">Avatar</label>
-        {% if form.avatar.value.url %}
+        {% if form.avatar.value %}
             <img src="{{ form.avatar.value.url }}" alt="Avatar" class="img-fluid mb-3" style="max-width: 200px;">
             <input type="file" name="avatar" class="form-control">
             <div class="form-text">You can change the avatar by uploading a new image.</div>

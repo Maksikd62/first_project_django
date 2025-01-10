@@ -3,11 +3,16 @@
         "model": "books.book",
         "pk": 1,
         "fields": {
-            "title": "War and Peace",
-            "author": "Leo Tolstoy",
-            "description": "A historical novel that chronicles the French invasion of Russia.",
-            "year": 1869,
-            "price": "19.99"
+            "title": "Don't Look Back and Be Silent",
+            "author": "Max Kidruk",
+            "description": "A thrilling novel about mysterious events in a small town.",
+            "year": 2016,
+            "price": "12.99",
+            "number_of_pages": 400,
+            "genre": "Thriller",
+            "language": "English",
+            "edition": "Family Leisure Club",
+            "cover": "covers/Look_back.jpg"
         }
     },
     {
@@ -18,7 +23,12 @@
             "author": "J.D. Salinger",
             "description": "A story about teenage rebellion and angst.",
             "year": 1951,
-            "price": "10.99"
+            "price": "10.99",
+            "number_of_pages": 277,
+            "genre": "Fiction",
+            "language": "English",
+            "edition": "",
+            "cover": "covers/catcher_rye.jpg"
         }
     },
     {
@@ -29,7 +39,12 @@
             "author": "J.R.R. Tolkien",
             "description": "A fantasy novel about the adventures of Bilbo Baggins.",
             "year": 1937,
-            "price": "15.99"
+            "price": "15.99",
+            "number_of_pages": 310,
+            "genre": "Fantasy",
+            "language": "English",
+            "edition": "Cloud",
+            "cover": "covers/Hobbit.jpg"
         }
     },
     {
@@ -40,7 +55,12 @@
             "author": "Fyodor Dostoevsky",
             "description": "A psychological novel exploring the moral dilemmas of a young man.",
             "year": 1866,
-            "price": "14.99"
+            "price": "14.99",
+            "number_of_pages": 671,
+            "genre": "Psychological Fiction",
+            "language": "Ukrainian",
+            "edition": "Vivat",
+            "cover": "covers/Crime_and_punishment.jpg"
         }
     },
     {
@@ -51,7 +71,12 @@
             "author": "Fyodor Dostoevsky",
             "description": "A philosophical novel about faith, doubt, and reason.",
             "year": 1880,
-            "price": "18.99"
+            "price": "18.99",
+            "number_of_pages": 824,
+            "genre": "Philosophical Fiction",
+            "language": "Ukrainian",
+            "edition": "Vivat",
+            "cover": "covers/Brothers_Karamazov.jpg"
         }
     }
 ]
