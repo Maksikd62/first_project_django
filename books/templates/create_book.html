@@ -77,6 +77,14 @@
         {% endif %}
     </div>
     <div class="mb-3">
+        <label class="form-label" style="font-size: 1.2em;">Translator</label>
+        <input type="text" name="translator" class="form-control" placeholder="Enter translator name"
+            value="{{ form.translator.value }}">
+        {% if form.translator.errors %}
+        <div class="text-danger">{{ form.translator.errors }}</div>
+        {% endif %}
+    </div>
+    <div class="mb-3">
         <label class="form-label" style="font-size: 1.2em;">Cover</label>
         <input type="file" name="cover" class="form-control" value="{{ form.cover.value }}">
         {% if form.cover.errors %}

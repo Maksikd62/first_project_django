@@ -69,6 +69,13 @@
         {% endif %}
     </div>
     <div class="mb-3">
+        <label class="form-label">Translator</label>
+        <input type="text" name="translator" class="form-control" value="{{ form.translator.value }}" placeholder="Enter translator name">
+        {% if form.translator.errors %}
+        <div class="text-danger">{{ form.translator.errors }}</div>
+        {% endif %}
+    </div>
+    <div class="mb-3">
         <label class="form-label">Cover</label>
         {% if form.cover.value.url != "covers/default.jpg" %}
             <img src="{{ form.cover.value.url }}" alt="Cover Image" class="img-fluid mb-3" style="max-width: 200px;">

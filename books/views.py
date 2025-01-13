@@ -6,10 +6,14 @@ from books.forms.edit import EditBook
 from books.models import Book
 import os
 from django.conf import settings
+from django.core.paginator import Paginator
 
 def list(request):
     books = Book.objects.all()
-    return render(request, "list_book.html", {"books": books})
+    paginator = Paginator(books, 5)  
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'list_book.html', {'books': page_obj})
 
 def detail(request, id):
     try:

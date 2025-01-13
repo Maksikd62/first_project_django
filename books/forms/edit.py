@@ -43,3 +43,9 @@ class EditBook(forms.ModelForm):
         if number_of_pages <= 0:
             raise forms.ValidationError("Number of pages must be a positive number.")
         return number_of_pages
+    
+    def clean_translator(self):
+        translator = self.cleaned_data.get("translator")
+        if not all(x.isalpha() or x.isspace() for x in translator):
+            raise forms.ValidationError("Translator name must contain only letters.")
+        return translator

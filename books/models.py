@@ -11,6 +11,7 @@ class Book(models.Model):
     genre=models.CharField(max_length=100, default='Other')
     language = models.CharField(max_length=100, blank=True)
     edition=models.CharField(max_length=200, blank=True)
+    translator=models.CharField(max_length=100, blank=True)
     cover = models.ImageField(upload_to='covers/', default='covers/default.jpg')
 
     def __str__(self):
