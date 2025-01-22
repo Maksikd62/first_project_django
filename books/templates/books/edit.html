@@ -1,0 +1,114 @@
+{% extends "books/layout.html" %}
+
+{% block header %}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-sm border-0 rounded-3" style="max-width: 800px; margin: 0 auto;">
+        <div class="card-header bg-secondary text-white">
+            <h4 class="mb-0 fs-4">Edit Book</h4>
+        </div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold text-secondary">Title</label>
+                        <input type="text" name="title" class="form-control" placeholder="Enter book title" value="{{ form.title.value }}">
+                        {% if form.title.errors %}
+                        <div class="text-danger mt-1">{{ form.title.errors }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold text-secondary">Author</label>
+                        <input type="text" name="author" class="form-control" placeholder="Enter author name" value="{{ form.author.value }}">
+                        {% if form.author.errors %}
+                        <div class="text-danger mt-1">{{ form.author.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold text-secondary">Description</label>
+                    <textarea name="description" class="form-control" placeholder="Enter book description">{{ form.description.value }}</textarea>
+                    {% if form.description.errors %}
+                    <div class="text-danger">{{ form.description.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label fw-bold text-secondary">Year</label>
+                        <input type="number" name="year" class="form-control" placeholder="Enter publication year" value="{{ form.year.value }}">
+                        {% if form.year.errors %}
+                        <div class="text-danger mt-1">{{ form.year.errors }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label fw-bold text-secondary">Price</label>
+                        <input type="number" step="0.01" name="price" class="form-control" placeholder="Enter book price" value="{{ form.price.value }}">
+                        {% if form.price.errors %}
+                        <div class="text-danger mt-1">{{ form.price.errors }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label fw-bold text-secondary">Number of Pages</label>
+                        <input type="number" name="number_of_pages" class="form-control" placeholder="Enter number of pages" value="{{ form.number_of_pages.value }}">
+                        {% if form.number_of_pages.errors %}
+                        <div class="text-danger mt-1">{{ form.number_of_pages.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold text-secondary">Genre</label>
+                        <input type="text" name="genre" class="form-control" placeholder="Enter genre" value="{{ form.genre.value }}">
+                        {% if form.genre.errors %}
+                        <div class="text-danger mt-1">{{ form.genre.errors }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold text-secondary">Language</label>
+                        <input type="text" name="language" class="form-control" placeholder="Enter language" value="{{ form.language.value }}">
+                        {% if form.language.errors %}
+                        <div class="text-danger mt-1">{{ form.language.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold text-secondary">Edition</label>
+                        <input type="text" name="edition" class="form-control" placeholder="Enter edition" value="{{ form.edition.value }}">
+                        {% if form.edition.errors %}
+                        <div class="text-danger mt-1">{{ form.edition.errors }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold text-secondary">Translator</label>
+                        <input type="text" name="translator" class="form-control" placeholder="Enter translator name" value="{{ form.translator.value }}">
+                        {% if form.translator.errors %}
+                        <div class="text-danger mt-1">{{ form.translator.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold d-block text-secondary">Cover</label>
+                    {% if form.cover.value.url != "covers/default.jpg" %}
+                        <img src="{{ form.cover.value.url }}" alt="Cover Image" class="img-fluid mb-3" style="max-width: 200px;">
+                        <input type="file" name="cover" class="form-control">
+                        <div class="form-text">You can change the cover by uploading a new image.</div>
+                    {% else %}
+                        <div class="text-muted">This book has the default cover. Upload a new image to replace it.</div>
+                        <input type="file" name="cover" class="form-control">
+                    {% endif %}
+                    {% if form.cover.errors %}
+                    <div class="text-danger mt-1">{{ form.cover.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <a href="{% url 'list_books' %}" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

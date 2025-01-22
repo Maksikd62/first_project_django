@@ -10,12 +10,12 @@ from django.conf import settings
 
 def list(request):
     users = User.objects.all()
-    return render(request, "list_user.html", {"users": users})
+    return render(request, "users/list.html", {"users": users})
 
 def detail(request, id):
     try:
         user = User.objects.get(id=id)
-        return render(request, "detail_user.html", {"user": user})
+        return render(request, "users/detail.html", {"user": user})
     except User.DoesNotExist:
         return HttpResponse("User not found", status=404)
     
@@ -38,9 +38,9 @@ def create(request):
 
         if form.is_valid():
             form.save()
-            return redirect("/users")
+            return redirect("/")
 
-    return render(request, "create_user.html", {"form": form})
+    return render(request, "users/create.html", {"form": form})
 
 
 def edit(request, id):
@@ -53,10 +53,10 @@ def edit(request, id):
     form = EditUser(instance=user)
 
     if request.method == "POST":
-        form = CreateUser(request.POST, instance=user, files=request.FILES)
+        form = EditUser(request.POST, instance=user, files=request.FILES)
 
         if form.is_valid():
             form.save()
             return redirect("/users")
 
-    return render(request, "edit_user.html", {"form": form})
+    return render(request, "users/edit.html", {"form": form})

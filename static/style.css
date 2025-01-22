@@ -5,11 +5,19 @@ body {
     min-height: 100vh;
 }
 
-body>.container {
+body > .container {
     flex-grow: 1;
 }
 
 footer {
     padding: 10px;
     color: white;
+}
+
+a, .btn {
+    transition: transform 0.3s ease;
+}
+
+a:hover, .btn:hover {
+    transform: scale(1.05);
 }

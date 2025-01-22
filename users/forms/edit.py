@@ -23,6 +23,8 @@ class EditUser(forms.ModelForm):
     
     def clean_user_name(self):
         user_name = self.cleaned_data.get("user_name")
+        if self.instance and self.instance.user_name == user_name:
+            return user_name
         if User.objects.filter(user_name=user_name).exists():
             raise forms.ValidationError("User with this username already exists. Please choose another one.")
         return user_name

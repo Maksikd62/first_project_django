@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class User(models.Model):
     ROLE_CHOICES = [
-        (0, 'Admin'),
+        (0, 'Manager'),
         (1, 'User'),
         (2, 'Publisher'),
         (3, 'Vip-user'),

@@ -1,4 +1,4 @@
-{% extends "layout_user.html" %}
+{% extends "users/layout.html" %}
 
 {% block header %}Create New User{% endblock %}
 
@@ -56,7 +56,7 @@
     </div>
     <div>
         <button type="submit" class="btn btn-outline-primary">Create</button>
-        <a href="{% url 'list_users' %}" class="btn btn-outline-secondary">Cancel</a>
+        <a href="{% url 'list_books' %}" class="btn btn-outline-secondary">Cancel</a>
     </div>
 </form>
 {% endblock %}

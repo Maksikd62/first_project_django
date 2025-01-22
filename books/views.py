@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
+from django.contrib import messages
 
 from books.forms.create import CreateBook
 from books.forms.edit import EditBook
@@ -8,17 +9,20 @@ import os
 from django.conf import settings
 from django.core.paginator import Paginator
 
+from books.cart import add_to_cart, clear_cart, get_cart, get_cart_count
+# from users.models import User
+
 def list(request):
     books = Book.objects.all()
     paginator = Paginator(books, 5)  
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request, 'list_book.html', {'books': page_obj})
+    return render(request, 'books/list.html', {'books': page_obj})
 
 def detail(request, id):
     try:
         book = Book.objects.get(id=id)
-        return render(request, "detail_book.html", {"book": book})
+        return render(request, "books/detail.html", {"book": book})
     except Book.DoesNotExist:
         return HttpResponse("Book not found", status=404)
     
@@ -28,8 +32,10 @@ def delete(request, id):
         if book.cover and book.cover.url != settings.MEDIA_URL + 'covers/default.jpg':
             if os.path.basename(book.cover.name) != 'default.jpg':
                 os.remove(os.path.join(settings.MEDIA_ROOT, book.cover.name))
-        book.delete()
-        return redirect("/books")
+            book.delete()
+            messages.success(request, "Book deleted successfully!")
+            return redirect("/")
+            
     except Book.DoesNotExist:
         return HttpResponse("Book not found", status=404)
     except Exception as e:
@@ -44,9 +50,13 @@ def create(request):
 
         if form.is_valid():
             form.save()
-            return redirect("/books")
+            messages.success(request, "Book created successfully!")
 
-    return render(request, "create_book.html", {"form": form})
+            return redirect("/")
+        else:
+            messages.error(request, "Invalid data!")
+
+    return render(request, "books/create.html", {"form": form})
 
 
 def edit(request, id):
@@ -63,6 +73,52 @@ def edit(request, id):
 
         if form.is_valid():
             form.save()
-            return redirect("/books")
+            messages.success(request, "Book edited successfully!")
 
-    return render(request, "edit_book.html", {"form": form})
+            return redirect("/")
+        else:
+            messages.error(request, "Invalid data!")
+
+    return render(request, "books/edit.html", {"form": form})
+
+#cart
+def index(request):
+    items = get_cart(request.session)
+    books = Book.objects.filter(id__in=items.keys())
+
+    # Обчислення загальної ціни
+    total_price = sum(book.price * items[str(book.id)] for book in books)
+    
+    cart_count = get_cart_count(request.session)
+
+    return render(request, "cart/index.html", {"books": books, "total_price": total_price, "cart_count": cart_count})
+
+
+def add(request, id, quantity = 1):
+    cart = get_cart(request.session)
+    book=Book.objects.get(id=id)
+    if book is None:
+        messages.error(request, "Book not found!")
+    
+    if str(id) in cart:
+        messages.warning(request, f"The book '{book.title}' is already in your cart!")
+
+    add_to_cart(request.session, id, quantity)
+    messages.success(request, f"Book '{book.title}' added to cart!")
+    return redirect("/")
+
+def clear(request):
+    clear_cart(request.session)
+    messages.success(request, "Cart cleared!")
+
+    return redirect("/")
+
+def delete_cart(request, id):
+    items = get_cart(request.session)
+    if str(id) in items:
+        del items[str(id)]
+        request.session['cart'] = items
+        messages.success(request, "Book deleted from cart!")
+    else:
+        messages.error(request, "Book not found in cart!")
+    return redirect("/cart")
