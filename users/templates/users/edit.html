@@ -1,66 +1,84 @@
 {% extends "users/layout.html" %}
 
-{% block header %}Edit User{% endblock %}
+{% block header %}{% endblock %}
 
 {% block content %}
-<form method="post">
-    {% csrf_token %}
-    <div class="mb-3">
-        <label class="form-label">First Name</label>
-        <input type="text" name="first_name" class="form-control" value="{{ form.first_name.value }}" placeholder="Enter first name">
-        {% if form.first_name.errors %}
-        <div class="text-danger">{{ form.first_name.errors}}</div>
-        {% endif %}
+<div class="container mt-4">
+    <div class="card shadow-sm border-0 rounded-3" style="max-width: 800px; margin: 0 auto;">
+        <div class="card-header bg-secondary text-white">
+            <h4 class="mb-0 fs-4">Edit Book</h4>
+        </div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold text-secondary">First Name</label>
+                        <input type="text" name="first_name" class="form-control" placeholder="Enter first name" value="{{ form.first_name.value }}">
+                        {% if form.first_name.errors %}
+                            <div class="text-danger mt-1">{{ form.first_name.errors }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold text-secondary">Last Name</label>
+                        <input type="text" name="last_name" class="form-control" placeholder="Enter last name" value="{{ form.last_name.value }}">
+                        {% if form.last_name.errors %}
+                            <div class="text-danger mt-1">{{ form.last_name.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label fw-bold text-secondary">Username</label>
+                    <input type="text" name="user_name" class="form-control" placeholder="Enter username" value="{{ form.user_name.value }}">
+                    {% if form.user_name.errors %}
+                        <div class="text-danger mt-1">{{ form.user_name.errors }}</div>
+                    {% endif %}
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label fw-bold text-secondary">Email</label>
+                    <input type="email" name="email" class="form-control" placeholder="Enter email" value="{{ form.email.value }}">
+                    {% if form.email.errors %}
+                        <div class="text-danger mt-1">{{ form.email.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold text-secondary">Phone</label>
+                    <input type="text" name="phone" class="form-control" placeholder="Enter phone number" value="{{ form.phone.value }}">
+                    {% if form.phone.errors %}
+                        <div class="text-danger mt-1">{{ form.phone.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold text-secondary">{{ form.role.label }}</label>
+                    {{ form.role }}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold text-secondary">Avatar</label>
+                    {% if form.avatar.value %}
+                        <img src="{{ form.avatar.value.url }}" alt="Avatar" class="img-fluid mb-3" style="max-width: 200px;">
+                        <input type="file" name="avatar" class="form-control">
+                        <div class="form-text">You can change the avatar by uploading a new image.</div>
+                    {% else %}
+                        <div class="text-muted">You can upload a new image.</div>
+                        <input type="file" name="avatar" class="form-control">
+                    {% endif %}
+                    {% if form.avatar.errors %}
+                        <div class="text-danger mt-1">{{ form.avatar.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-primary px-4">Save Changes</button>
+                    <a href="{% url 'list_users' %}" class="btn btn-secondary px-4">Cancel</a>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="mb-3">
-        <label class="form-label">Last Name</label>
-        <input type="text" name="last_name" class="form-control" value="{{ form.last_name.value }}" placeholder="Enter last name">
-        {% if form.last_name.errors %}
-            <div class="text-danger">{{ form.last_name.errors}}</div>
-        {% endif %}
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Username</label>
-        <input type="text" name="user_name" class="form-control" value="{{ form.user_name.value }}" placeholder="Enter username">
-        {% if form.user_name.errors %}
-            <div class="text-danger">{{ form.user_name.errors}}</div>
-        {% endif %}
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Email</label>
-        <input type="email" name="email" class="form-control" value="{{ form.email.value }}" placeholder="Enter email">
-        {% if form.email.errors %}
-            <div class="text-danger">{{ form.email.errors}}</div>
-        {% endif %}
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Phone</label>
-        <input type="text" name="phone" class="form-control" value="{{ form.phone.value }}" placeholder="Enter phone number">
-        {% if form.phone.errors %}
-            <div class="text-danger">{{ form.phone.errors}}</div>
-        {% endif %}
-    </div>
-    <div class="mb-3">
-        <label class="form-label">{{form.role.label}}</label>
-        {{form.role}}
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Avatar</label>
-        {% if form.avatar.value %}
-            <img src="{{ form.avatar.value.url }}" alt="Avatar" class="img-fluid mb-3" style="max-width: 200px;">
-            <input type="file" name="avatar" class="form-control">
-            <div class="form-text">You can change the avatar by uploading a new image.</div>
-        {% else %}
-            <div class="text-muted"> You can upload a new image.</div>
-            <input type="file" name="avatar" class="form-control">
-        {% endif %}
-        {% if form.avatar.errors %}
-            <div class="text-danger">{{ form.avatar.errors }}</div>
-        {% endif %}
-    </div>
-    <div>
-        <button type="submit" class="btn btn-outline-primary">Save Changes</button>
-        <a href="{% url 'list_users' %}" class="btn btn-outline-secondary">Cancel</a>
-    </div>
-</form>
+</div>
 {% endblock %}

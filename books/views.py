@@ -32,6 +32,10 @@ def delete(request, id):
         if book.cover and book.cover.url != settings.MEDIA_URL + 'covers/default.jpg':
             if os.path.basename(book.cover.name) != 'default.jpg':
                 os.remove(os.path.join(settings.MEDIA_ROOT, book.cover.name))
+            items = get_cart(request.session)
+            if str(id) in items:
+                del items[str(id)]
+                request.session['cart'] = items
             book.delete()
             messages.success(request, "Book deleted successfully!")
             return redirect("/")
@@ -60,11 +64,12 @@ def create(request):
 
 
 def edit(request, id):
+    try:
+        book = Book.objects.get(id=id)
+    except Book.DoesNotExist:
+        return HttpResponse("Book not found", status=404)
 
-    book = Book.objects.get(id=id)
-
-    if book is None:
-        return HttpResponse("Book not found")
+    old_cover = book.cover.path if book.cover and os.path.basename(book.cover.name) != 'default.jpg' else None
 
     form = EditBook(instance=book)
 
@@ -72,7 +77,15 @@ def edit(request, id):
         form = EditBook(request.POST, instance=book, files=request.FILES)
 
         if form.is_valid():
-            form.save()
+            updated_book = form.save(commit=False)
+
+            if 'cover' in request.FILES and old_cover:
+                try:
+                    os.remove(old_cover)
+                except FileNotFoundError:
+                    pass
+
+            updated_book.save()
             messages.success(request, "Book edited successfully!")
 
             return redirect("/")
@@ -80,6 +93,7 @@ def edit(request, id):
             messages.error(request, "Invalid data!")
 
     return render(request, "books/edit.html", {"form": form})
+
 
 #cart
 def index(request):

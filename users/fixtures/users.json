@@ -7,7 +7,8 @@
             "last_name": "Doe",
             "user_name": "johndoe",
             "phone": "123-456-7890",
-            "email": "johndoe@example.com"
+            "email": "johndoe@example.com",
+            "avatar":"avatars/user1.jpg"
         }
     },
     {
@@ -18,7 +19,8 @@
             "last_name": "Smith",
             "user_name": "janesmith",
             "phone": "234-567-8901",
-            "email": "janesmith@example.com"
+            "email": "janesmith@example.com",
+            "avatar":"avatars/user2.jpg"
         }
     },
     {
@@ -29,7 +31,8 @@
             "last_name": "Johnson",
             "user_name": "alicejohnson",
             "phone": "345-678-9012",
-            "email": "alicejohnson@example.com"
+            "email": "alicejohnson@example.com",
+            "avatar":"avatars/user3.jpg"
         }
     },
     {
@@ -40,7 +43,8 @@
             "last_name": "Brown",
             "user_name": "bobbrown",
             "phone": "456-789-0123",
-            "email": "bobbrown@example.com"
+            "email": "bobbrown@example.com",
+            "avatar":"avatars/user4.jpg"
         }
     },
     {
@@ -51,7 +55,8 @@
             "last_name": "Davis",
             "user_name": "charliedavis",
             "phone": "567-890-1234",
-            "email": "charliedavis@example.com"
+            "email": "charliedavis@example.com",
+            "avatar":"avatars/user5.jpg"
         }
     }
 ]

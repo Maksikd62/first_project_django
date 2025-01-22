@@ -1,25 +1,19 @@
 <nav class="navbar navbar-expand-lg" style="background-color: rgb(162, 229, 231);">
     <div class="container-fluid">
-        <!-- Books Link -->
         <a class="navbar-brand" href="{% url 'list_books' %}">Books</a>
 
-        <!-- Toggler Button for Mobile View -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- Navbar Content -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Left Section -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <!-- Users Link -->
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'list_users' %}">Users</a>
                 </li>
 
-                <!-- Cart Link -->
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'cart' %}">
                         <i class="bi bi-cart"></i> 
@@ -28,8 +22,9 @@
                 </li>
             </ul>
 
-            <!-- Right Section -->
-            <a class="btn btn-outline-success ms-auto" href="{% url 'create_user' %}">Create User</a>
+            <div class="d-flex ms-auto"></div>
+                <a class="btn btn-outline-success me-2" href="{% url 'create_book' %}">Create Book</a>
+            </div>
         </div>
     </div>
 </nav>

@@ -7,7 +7,7 @@
     <div class="row">
         {% for book in books %}
         <div class="col-md-6 mb-4">
-            <div class="d-flex border rounded p-3 shadow-sm">
+            <div class="d-flex border rounded p-3 shadow">
                 <div class="me-3">
                     {% if book.cover %}
                     <img src="{{ book.cover.url }}" alt="{{ book.title }}" class="img-fluid"
@@ -34,6 +34,34 @@
                     <a href="{% url 'add_to_cart' book.id %}" class="btn btn-outline-danger d-flex align-items-center justify-content-center" style="font-size: 14px; padding: 5px 10px;">
                         <i class="bi bi-cart me-1" style="font-size: 16px;"></i> Add to cart
                     </a>
+                    <div class="d-flex justify-content-end mt-3">
+                        <button type="button" class="btn btn-outline-danger btn-sm d-flex align-items-center justify-content-center" title="Delete Book" data-bs-toggle="modal" data-bs-target="#deleteModal{{ book.id }}">
+                            <i class="bi bi-trash3"></i> Delete
+                        </button>
+                    </div>
+                </div>
+                
+
+                <!-- Modal -->
+                <div class="modal fade" id="deleteModal{{ book.id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ book.id }}" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-danger" id="deleteModalLabel{{ book.id }}">Confirm Deletion</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure you want to delete this book?
+                            </div>
+                            <div class="modal-footer">
+                                <form action="{% url 'delete_book' book.id %}" method="post" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

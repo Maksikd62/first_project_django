@@ -16,6 +16,10 @@ class User(models.Model):
     phone = models.CharField(max_length=20)
     avatar = models.ImageField(blank=True, upload_to='avatars/')
     role = models.IntegerField(choices=ROLE_CHOICES, default=1)
+    
+    @property
+    def name(self):
+        return f"{self.first_name} {self.last_name}"
 
     def __str__(self):
         return self.user_name

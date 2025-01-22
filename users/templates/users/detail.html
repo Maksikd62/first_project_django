@@ -3,26 +3,26 @@
 {% block header %}{% endblock %}
 
 {% block content %}
-<div class="container mt-5 d-flex justify-content">
-    <div class="card text-center" style="width: 400px;">
-        <div class="card-header">
-            <h4>User Details</h4>
+<div class="container mt-4">
+    <div class="card shadow border-0 rounded-3 bg-light text-center" style="max-width: 500px; margin: 0 auto;">
+        <div class="card-header bg-secondary text-white">
+            <h4 class="mb-0 fs-4">User Details</h4>
         </div>
-        <div class="card-body"></div>
+        <div class="card-body">
             {% if user.avatar %}
-                <img src="{{ user.avatar.url }}" alt="Avatar" class="img-thumbnail mb-3 mx-auto d-block" style="border-radius: 60%; width: 50%; height: 200px;">
+                <img src="{{ user.avatar.url }}" alt="Avatar" class="img-fluid rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
             {% else %}
-                <i class="bi bi-person-circle" style="font-size: 75px;"></i>
+                <i class="bi bi-person-circle" style="font-size: 100px; color: #ccc;"></i>
             {% endif %}
-            <p><strong>Name:</strong> {{ user.first_name }} {{user.last_name}}</p>
-            <p><strong>User name:</strong> {{ user.user_name }}</p>
-            <p><strong>Email:</strong> {{ user.email }}</p>
-            <p><strong>Phone:</strong> {{ user.phone }}</p>
-            <p><strong>Role:</strong> {{ user.get_role_display }}</p>
+            <h2 class="text-dark mb-3">{{ user.first_name }} {{ user.last_name }}</h2>
+            <p class="text-muted mb-2"><strong>Username:</strong> {{ user.user_name }}</p>
+            <p class="text-muted mb-2"><strong>Email:</strong> {{ user.email }}</p>
+            <p class="text-muted mb-2"><strong>Phone:</strong> {{ user.phone }}</p>
+            <p class="text-muted mb-2"><strong>Role:</strong> {{ user.get_role_display }}</p>
         </div>
-    </div>
-    <div class="mt-3 text-start">
-        <a href="{% url 'list_users' %}" class="btn btn-outline-secondary">Back</a>
+        <div class="card-footer">
+            <a href="{% url 'list_users' %}" class="btn btn-secondary btn-lg w-100">Back</a>
+        </div>
     </div>
 </div>
 {% endblock %}
