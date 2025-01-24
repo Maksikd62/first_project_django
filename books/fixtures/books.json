@@ -76,7 +76,87 @@
             "genre": "Psychological Fiction",
             "language": "Ukrainian",
             "edition": "Vivat",
-            "cover": "covers/Brothers_Karamazov.jpg"
+            "cover": ""
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 6,
+        "fields": {
+            "title": "1984",
+            "author": "George Orwell",
+            "description": "A dystopian novel exploring a totalitarian regime and its effects on individuality.",
+            "year": 1949,
+            "price": "13.99",
+            "number_of_pages": 328,
+            "genre": "Dystopian Fiction",
+            "language": "English",
+            "edition": "Harcourt, Brace & Company",
+            "cover": "covers/1984.jpg"
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 7,
+        "fields": {
+            "title": "To Kill a Mockingbird",
+            "author": "Harper Lee",
+            "description": "A novel about racism and injustice in the American South.",
+            "year": 1960,
+            "price": "11.99",
+            "number_of_pages": 281,
+            "genre": "Classic Fiction",
+            "language": "English",
+            "edition": "J.B. Lippincott & Co.",
+            "cover": "covers/Kill_mockingbird.jpg"
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 8,
+        "fields": {
+            "title": "The Alchemist",
+            "author": "Paulo Coelho",
+            "description": "A philosophical novel about following your dreams and destiny.",
+            "year": 1988,
+            "price": "12.49",
+            "number_of_pages": 208,
+            "genre": "Philosophical Fiction",
+            "language": "English",
+            "edition": "HarperOne",
+            "cover": "covers/Alchemist.jpg"
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 9,
+        "fields": {
+            "title": "Pride and Prejudice",
+            "author": "Jane Austen",
+            "description": "A classic novel about love, reputation, and class.",
+            "year": 1813,
+            "price": "9.99",
+            "number_of_pages": 279,
+            "genre": "Romantic Fiction",
+            "language": "English",
+            "edition": "T. Egerton",
+            "cover": "covers/Pride_prejudice.jpg"
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 10,
+        "fields": {
+            "title": "The Little Prince",
+            "author": "Antoine de Saint-Exupéry",
+            "description": "A poetic tale about love, friendship, and humanity.",
+            "year": 1943,
+            "price": "10.49",
+            "number_of_pages": 96,
+            "genre": "Children's Fiction",
+            "language": "English",
+            "edition": "Reynal & Hitchcock",
+            "cover": "covers/Little_prince.jpg"
         }
     }
 ]

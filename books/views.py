@@ -17,8 +17,15 @@ def list(request):
     paginator = Paginator(books, 5)  
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request, 'books/list.html', {'books': page_obj})
+    
+    cart = get_cart(request.session)
+    cart_items = set(map(int, cart.keys()))
 
+    return render(request, 'books/list.html', {
+        'books': page_obj,
+        'cart_items': cart_items
+    })
+    
 def detail(request, id):
     try:
         book = Book.objects.get(id=id)

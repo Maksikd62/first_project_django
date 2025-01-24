@@ -59,7 +59,7 @@ def edit(request, id):
     form = EditUser(instance=user)
 
     if request.method == "POST":
-        form = EditUser(request.POST, instance=user, files=request.FILES)
+        form = CreateUser(request.POST, instance=user, files=request.FILES)
 
         if form.is_valid():
             updated_user = form.save(commit=False)
