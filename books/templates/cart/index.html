@@ -18,7 +18,11 @@
             <td>{{ forloop.counter }}</td>
             <td>
                 <div class="d-flex align-items-center">
-                    <img src="{{ book.cover.url }}" alt="Обкладинка" class="img-thumbnail" style="width: 50px; height: 75px; margin-right: 10px;">
+                    {% if book.cover %}
+                    <img src="{{ book.cover.url }}" alt="Cover" class="img-thumbnail" style="width: 50px; height: 75px; margin-right: 10px;">
+                    {% else %}
+                    <img src="/media/covers/default.jpg" alt="Default Cover" class="img-thumbnail" style="width: 50px; height: 75px; margin-right: 10px;">
+                    {% endif %}
                     <div>
                         <strong>{{ book.title }}</strong><br>
                         {{ book.author }}<br>

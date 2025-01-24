@@ -43,9 +43,9 @@ def delete(request, id):
             if str(id) in items:
                 del items[str(id)]
                 request.session['cart'] = items
-            book.delete()
-            messages.success(request, "Book deleted successfully!")
-            return redirect("/")
+        book.delete()
+        messages.success(request, "Book deleted successfully!")
+        return redirect("/")
             
     except Book.DoesNotExist:
         return HttpResponse("Book not found", status=404)
